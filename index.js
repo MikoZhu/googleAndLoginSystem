@@ -4,8 +4,9 @@ const mongoose = require("mongoose")
 const dotenv = require("dotenv")
 dotenv.config()
 const authRoute = require("./routes/auth-route")
+require("./config/passport") //passport.js--passport.use has been set
 
-mongoose.connect("mongodb+srv://HuadanZhu:7788999@cluster0.vngbd6t.mongodb.net/?retryWrites=true&w=majority",
+mongoose.connect(process.env.DB_CONNECT,
     {
         useNewUrlParser:true,
         useUnifiedTopology: true,
