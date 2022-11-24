@@ -10,4 +10,9 @@ router.get("/google",passport.authenticate("google",{
     scope:["profile"],
 }))
 
+router.get("/google/redirect", passport.authenticate("google"),(req,res)=>{
+    // log in successfully
+    res.redirect("/profile")
+})
+
 module.exports = router
