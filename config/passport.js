@@ -2,6 +2,11 @@ const passport = require("passport")
 const GoogleStrategy = require("passport-google-oauth20").Strategy
 const User = require("../models/user-model")
 
+// req.user
+// req.logout()
+// req.isAuthenticated()
+
+
 passport.serializeUser((user,done)=>{
     console.log("Serializing user now")
     done(null, user._id)
@@ -25,16 +30,18 @@ passport.use(new GoogleStrategy({
         // passport callback, passportjs => configure strategy => function 4 prams
         User.findOne({googleID:profile.id}).then ((foundUser)=>{
             if(foundUser){
+                console.log(foundUser)
                 console.log("User already exist.")
                 done(null,foundUser)
             }else {
                 new User({
                     name:profile.displayName,
                     googleID:profile.id,
-                    thumbnai:profile.photos[0].value,
+                    thumbnail:profile.photos[0].value,
                 })
                 .save()
                 .then((newUser)=>{
+                    console.log(newUser)
                     console.log("New user created.")
                     done(null,newUser)
                 })
