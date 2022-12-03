@@ -38,7 +38,7 @@ app.use(flash())
 app.use((req,res,next)=>{
     res.locals.success_msg = req.flash("success_msg") //sucess_meg在view中都是可以用的
     res.locals.error_msg =req.flash("error_msg")
-    res.locals.error = req.flash("error")
+    res.locals.error = req.flash("error") //passport 专用的
     next()
 })
 app.use("/auth",authRoute) //这里的routes，在上面的middleware跑完了，才能跑

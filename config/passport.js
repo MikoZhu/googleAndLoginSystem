@@ -37,7 +37,7 @@ passport.use(new LocalStrategy((username,password,done)=>{
                 return done(null,user)
             }
         })
-    }).catch(err =>{
+    }).catch((err) =>{
         return done(null,false)
     })
  })
